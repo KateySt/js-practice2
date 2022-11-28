@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {Button, TextField} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 class ListToDo extends Component {
     state = {
@@ -10,18 +12,18 @@ class ListToDo extends Component {
         list: [
             {
                 id: 0,
-                work: 'do1',
-                isShow: false,
+                title: 'do1',
+                isCompleted: false,
             },
             {
                 id: 1,
-                work: 'do2',
-                isShow: true,
+                title: 'do2',
+                isCompleted: true,
             },
             {
                 id: 2,
-                work: 'do3',
-                isShow: true,
+                title: 'do3',
+                isCompleted: true,
             },
         ],
         deleteElement: '',
@@ -36,7 +38,7 @@ class ListToDo extends Component {
 
     onClickAddToLIst = () => {
         this.setState({
-            list: [...this.state.list, {id: Date.now(), work: this.state.input, isShow: false}],
+            list: [...this.state.list, {id: Date.now(), title: this.state.input, isCompleted: false}],
         });
     }
 
@@ -51,16 +53,15 @@ class ListToDo extends Component {
             changedElement: [this.state.list.splice(this.state.list.indexOf(value), 1,
                 {
                     id: value.id,
-                    work: value.work,
-                    isShow: !value.isShow
+                    title: value.title,
+                    isCompleted: !value.isCompleted
                 },)]
         });
-        console.log(this.state)
     }
 
 
     getColour = (value) => {
-        return value.isShow ? '#F7C815' : '#BC0000';
+        return value.isCompleted ? '#F7C815' : '#BC0000';
     }
 
     render() {
@@ -70,29 +71,37 @@ class ListToDo extends Component {
                     <Grid container spacing={1}>
                         <Grid item xs={12} md={6}>
                             <List dense={false}>
-                                {this.state.list.map((value, index) =>
-                                    <>
-                                        <div key={`work-- ${index}`}
-                                             onClick={() => {
-                                                 this.onChangeShow(value)
-                                             }}
-                                             style={{background: this.getColour(value), height: 50, width: 100}}>
-                                            {value.work}
-                                        </div>
-                                        <div key={`delete-- ${index}`} onClick={() => {
-                                            this.onDelete(value)
-                                        }}>
-                                            <DeleteIcon/>
-                                        </div>
-                                    </>
-                                )}
+                                {this.state.list &&
+                                    this.state.list.map((value, index) =>
+                                        <>
+                                            <div key={`work-- ${index}`}
+                                                 onClick={() => {
+                                                     this.onChangeShow(value)
+                                                 }}
+                                                 style={{background: this.getColour(value), height: 50, width: 100}}>
+                                                {value.title}
+                                            </div>
+                                            <div key={`delete-- ${index}`} onClick={() => {
+                                                this.onDelete(value)
+                                            }}>
+                                                <DeleteIcon/>
+                                            </div>
+                                        </>
+                                    )}
                             </List>
                         </Grid>
                     </Grid>
                 </Box>
                 <div>
-                    <input value={this.state.input} onChange={this.onInputText}/>
-                    <button onClick={this.onClickAddToLIst}>Add</button>
+                    <TextField id="standard-basic"
+                               variant="standard"
+                               value={this.state.input}
+                               onChange={this.onInputText}/>
+                    <Button variant="contained"
+                            endIcon={<SendIcon/>}
+                            onClick={this.onClickAddToLIst}>
+                        Send
+                    </Button>
                 </div>
             </>
         );
