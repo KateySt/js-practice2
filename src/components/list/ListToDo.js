@@ -74,7 +74,7 @@ class ListToDo extends Component {
                             <List dense={false}>
                                 {this.state.list &&
                                     this.state.list.map((value, index) =>
-                                        <>
+                                        <div key={index}>
                                             <div key={`title-- ${index}`}
                                                  onClick={() => {
                                                      this.onChangeShow(value)
@@ -87,7 +87,7 @@ class ListToDo extends Component {
                                             }}>
                                                 <DeleteIcon/>
                                             </div>
-                                        </>
+                                        </div>
                                     )}
                             </List>
                         </Grid>
