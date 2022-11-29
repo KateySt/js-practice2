@@ -49,7 +49,6 @@ class ListToDo extends Component {
     }
 
     onChangeShow = (value) => {
-        console.log(this.state.list)
         this.setState({
             changedElement: [this.state.list.splice(this.state.list.indexOf(value), 1,
                 {
@@ -74,7 +73,7 @@ class ListToDo extends Component {
                             <List dense={false}>
                                 {this.state.list &&
                                     this.state.list.map((value, index) =>
-                                        <div key={index}>
+                                        <div key={`card-- ${index}`}>
                                             <div key={`title-- ${index}`}
                                                  onClick={() => {
                                                      this.onChangeShow(value)
