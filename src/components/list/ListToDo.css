@@ -1,0 +1,9 @@
+.box {
+    white-space: nowrap
+}
+
+.box div {
+    width: 50px;
+    display: inline-block;
+    border: 1px solid black
+}
