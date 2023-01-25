@@ -17,7 +17,6 @@ function useList() {
 
     const onClickAddToList = () => {
         dispatch(setList(inputText));
-        console.log(listToDos)
     }
 
     const onDelete = (value) => {
