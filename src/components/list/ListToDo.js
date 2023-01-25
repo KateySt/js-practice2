@@ -36,9 +36,10 @@ const ListToDo = () => {
                                         >
                                             {value.title}
                                         </div>
-                                        <div key={`delete-- ${index}`} onClick={() => {
-                                            onDelete(value)
-                                        }}>
+                                        <div key={`delete-- ${index}`}
+                                             onClick={() => {
+                                                 onDelete(value)
+                                             }}>
                                             <DeleteIcon/>
                                         </div>
                                     </div>
@@ -61,7 +62,6 @@ const ListToDo = () => {
             </div>
         </>
     );
-
 }
 
 export default ListToDo;

@@ -1,3 +1,3 @@
 import ListToDo from "./ListToDo";
 
-export default ListToDo
+export default ListToDo;
